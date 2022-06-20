@@ -1,0 +1,35 @@
+{
+    "default":{
+		"record_dir": "./videos/",
+		"replace_file": false,
+		"ffmpeg": {
+			"args": ["-c", "copy", "-map", "0", "-b:v", "32768k", "-b:a", "192k", "-max_muxing_queue_size", "262144k", "-r", "60", "-hide_banner", "-loglevel", "\"repeat+info\"", "-err_detect", "ignore_err"],
+			"path": "ffmpeg"
+		}
+	},
+	
+    "programs":[
+        {
+            "filename": "%title% - ep%episode% s%season% - %subtitle%.%ext%",
+            "record_dir": "%default%/doctorwho/s%season%",
+
+            "conditions":{
+				"or":{
+					"title":    {"match": "partial", "value":["Doctor Who","DoctorWho"]},
+					"subtitle": {"match": "partial", "value":["Doctor Who","DoctorWho"]}
+				}
+            }
+        },
+		
+		{
+            "filename": "%title% - ep%episode% s%season% - %subtitle%.%ext%",
+            "record_dir": "%default%/ninjago/s%season%",
+
+            "conditions":{
+				"or":{
+					"title":    {"match": "partial", "value":"Ninjago"}
+				}
+            }
+        }
+    ]
+}
